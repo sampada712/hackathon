@@ -83,4 +83,12 @@ public class Job {
 	String jobDesc;
 	int rating;
 	Map<String, String[]> matchedCriteria;
+
+	public Map<String, String[]> getMatchedCriteria() {
+		return matchedCriteria;
+	}
+
+	public void setMatchedCriteria(Map<String, String[]> matchedCriteria) {
+		this.matchedCriteria = matchedCriteria;
+	}
 }

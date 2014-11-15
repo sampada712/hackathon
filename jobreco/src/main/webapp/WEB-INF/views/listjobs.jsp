@@ -84,24 +84,28 @@ th {
 									</div></td>
 								<td width="30%"><span
 									style="vertical-align: text-top; font-family: arial; font-weight: bold; font-size: 14px">Matched
-										Criteria: </span><span style="font-family: arial; font-size: 12px;">Location,
-										Experience, Skills(Java, Oracle), Connections: <a
-										href="https://www.linkedin.com/profile/view?id=117013219&amp;trk=nav_responsive_tab_profile_pic"
-										class="account-toggle"> <img
-											src="https://media.licdn.com/mpr/mpr/shrink_20_20/p/2/000/1e8/10c/2a51a4a.jpg"
-											data-li-src="https://media.licdn.com/mpr/mpr/shrink_20_20/p/2/000/1e8/10c/2a51a4a.jpg"
-											id="img-defer-id-1-40363" class="img-defer nav-profile-photo"
-											alt="sampada patil" height="20" width="20">
-									</a> &nbsp;&nbsp;<a
-										href="https://www.linkedin.com/profile/view?id=18567515&amp;trk=nav_responsive_tab_profile_pic"
-										class="account-toggle"> <img
-											src="https://media.licdn.com/mpr/mpr/shrink_20_20/p/4/000/149/33e/2e7c8f5.jpg"
-											data-li-src="https://media.licdn.com/mpr/mpr/shrink_20_20/p/4/000/149/33e/2e7c8f5.jpg"
-											id="img-defer-id-1-40363" class="img-defer nav-profile-photo"
-											alt="Lata Chari" height="20" width="20">
-									</a>
+										Criteria: </span><span style="font-family: arial; font-size: 12px;">
+										<c:forEach var="criteria" items="${job.matchedCriteria}">
+											<c:choose>
+												<c:when
+													test="${criteria.value != null && !(criteria.key eq 'Connections')}">
+													${criteria.key}:(
+														<c:forEach var="skill" items="${criteria.value}">
+															${skill}, 
+														</c:forEach>
+													) 
+												</c:when>
+												<c:when test="${criteria.key eq 'Connections'}">
+													Connections: <a href="/">${criteria.value[0]} people </a>
+												</c:when>
+												<c:otherwise>
+													${criteria.key}, 
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 								</span><br /> <span
-									style="vertical-align: text-top; font-family: arial; font-weight: bold; font-size: 14px; padding-bottom: 3px">Score: </span> <c:choose>
+									style="vertical-align: text-top; font-family: arial; font-weight: bold; font-size: 14px; padding-bottom: 3px">Score:
+								</span> <c:choose>
 										<c:when test="${job.rating < 40}">
 											<span style="color: red; font-weight: bold;">${job.rating}%
 											</span>

@@ -2,6 +2,7 @@ package com.linkedin.hack;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -11,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.linkedin.hack.job.Job;
+import com.linkedin.hack.job.JobSearchClient;
 
 /**
  * Handles requests for the application home page.
@@ -36,7 +40,12 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);
-		model.addAttribute("profileId", profileId);
+		
+		List<Job> jobs = JobSearchClient.getInstance()
+				.getRecommendedJobsForProfile(profileId);
+		
+		model.addAttribute("jobs", jobs);
+
 
 		return "home";
 	}

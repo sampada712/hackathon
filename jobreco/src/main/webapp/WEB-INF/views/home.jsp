@@ -79,11 +79,7 @@ th {
 					</tr>
 				</thead>
 				<tbody>
-					<%
-				
-						List<Job> jobs = JobSearchClient.getInstance()
-								.getRecommendedJobsForProfile((String)request.getAttribute("profileId"));
-					%>
+
 					<c:forEach var="job" items="${jobs}">
 						<tr>
 							<td rowspan="2">1</td>

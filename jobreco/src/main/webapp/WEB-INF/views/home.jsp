@@ -91,7 +91,8 @@ padding : 10px;
 				<img src="/hack/resources/images/people1.png">
 			</div>
 			<br>
-			<div class="row" style="background-color:white;" width="250px">
+
+			<div style="background-color:white;width:310px;padding-left: 10px" >
 				<table >
 					<tr><img src="/hack/resources/images/logo2.png" width="30%" height="10%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><font style="background-color:white;color:blue">
 					<a href="/hack/listjobs/${profileId}" >see more...</a></font></i></tr>
@@ -118,6 +119,7 @@ padding : 10px;
 						</tr>
 					</c:forEach>
 				</table>
+	
 			</div>
 			<br>
 			<div class="row">

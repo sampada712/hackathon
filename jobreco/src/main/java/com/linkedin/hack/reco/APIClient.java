@@ -8,6 +8,9 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 
+import com.linkedin.hack.reco.pojo.profile.Profile;
+import com.linkedin.hack.reco.pojo.search.SearchResults;
+
 public class APIClient {
 
 	private OAuthService getService() {
@@ -30,35 +33,27 @@ public class APIClient {
 		return response.getBody();
 	}
 
-	public String searchProfiles(String fname, String lname) {
+	public SearchResults getProfiles(String fname, String lname) {
 		String url = String
-				.format("https://api.linkedin.com/v1/people-search?first-name=%s&last-name=%s&sort=connections",
+				.format("https://api.linkedin.com/v1/people-search?first-name=%s&last-name=%s&sort=connections&format=json",
 						fname, lname);
 
 		OAuthRequest request = new OAuthRequest(Verb.GET, url);
 		getService().signRequest(getToken(), request);
 		Response response = request.send();
-		return response.getBody();
+		SearchResults searchResults = JSONParser.getSearchResults(response.getBody());
+		return searchResults;
 	}
 
-	public String getProfileData(String fname, String lname) {
-		String url = String
-				.format("https://api.linkedin.com/v1/people-search?first-name=%s&last-name=%s&sort=connections",
-						fname, lname);
-
-		OAuthRequest request = new OAuthRequest(Verb.GET, url);
-		getService().signRequest(getToken(), request);
-		Response response = request.send();
-		Profile profile = ProfileParser.getProfileDetails(response.getBody());
-		
+	public Profile getProfileData(String profileId) {
 		OAuthRequest request = new OAuthRequest(
 				Verb.GET,
 				"http://api.linkedin.com/v1/people/id="
-						+ id
+						+ profileId
 						+ ":(id,first-name,last-name,industry,positions,site-standard-profile-request,skills,educations)?format=json");
 		getService().signRequest(getToken(), request);
 		Response response = request.send();
-		return response.getBody();
+		return JSONParser.getProfile(response.getBody());
 	}
 
 	public static void main(String[] args) {
@@ -68,8 +63,11 @@ public class APIClient {
 		 * String jobs = lc.getJobs("us"); System.out.println(jobs);
 		 */
 
-		String search = lc.searchProfiles("anu", "vemuri", "", "");
-		System.out.println(search);
+		Profile profile = lc.getProfileData("LVoFYo5QHJ");
+		System.out.println(profile.getFirstName());
+		
+		
+
 
 		/*
 		 * String memberDetails = lc.getMemberDetails("LVoFYo5QHJ");

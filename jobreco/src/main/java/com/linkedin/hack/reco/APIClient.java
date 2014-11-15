@@ -52,20 +52,38 @@ public class APIClient {
 		Response response = request.send();
 		return response.getBody();
 	}
+	
+	public String getCompaniesFollowed(String id) {
+		OAuthRequest request = new OAuthRequest(
+				Verb.GET,
+				"http://api.linkedin.com/v1/people/id="
+						+ id
+						+ "/following/companies");
+		getService().signRequest(getToken(), request);
+		Response response = request.send();
+		return response.getBody();
+	}
+	
 
 	public static void main(String[] args) {
 		APIClient lc = new APIClient();
 
-		String jobs = lc.getJobs("us");
-		System.out.println(jobs);
+	/*	String jobs = lc.getJobs("us");
+		System.out.println(jobs);*/
 
-		/*
-		 * String search = lc.search("anu", "vemuri", "", "");
-		 * System.out.println(search);
-		 * 
-		 * String memberDetails = lc.getMemberDetails("LVoFYo5QHJ");
-		 * System.out.println(memberDetails);
+		
+		 /*String search = lc.search("anu", "vemuri", "", "");
+		 System.out.println(search);
 		 */
+		
+/*		 String memberDetails = lc.getProfileData("LVoFYo5QHJ");
+		 System.out.println(memberDetails);*/
+		
+		 String memberDetails = lc.getCompaniesFollowed("LVoFYo5QHJ");
+		 System.out.println(memberDetails);
+		 
+		 
+		 
 
 	}
 }

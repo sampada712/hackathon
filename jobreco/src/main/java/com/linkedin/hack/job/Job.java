@@ -2,13 +2,12 @@ package com.linkedin.hack.job;
 
 public class Job {
 
-	public Job(String companyName, String jobTitle, String location,
+	public Job(String companyName, String location, String jobTitle,
 			long JobId) {
 		this.companyName = companyName;
 		this.jobTitle = jobTitle;
 		this.location = location;
 		this.JobId = JobId;
-
 	}
 
 	String companyName;

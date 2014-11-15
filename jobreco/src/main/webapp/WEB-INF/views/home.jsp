@@ -15,8 +15,8 @@
 	rel='stylesheet' type='text/css'>
 <style type="text/css">
 * {
-	font-family: "Times New Roman", Georgia, Serif;
-	font-size: 15px;
+	font-family: Arial,"Times New Roman", Georgia, Serif;
+	font-size: 13px;
 	background-color: #D3D3D3;
 }
 
@@ -91,15 +91,16 @@ padding : 10px;
 				<img src="/hack/resources/images/people1.png">
 			</div>
 			<br>
-			<div class="row" style="background-color:white;border:3px solid blue;" width="280px">
+			<div class="row" style="background-color:white;" width="250px">
 				<table >
 					<tr><b><span style="font-size:125%">Check out these jobs</span></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><font style="background-color:white;color:blue">
 					<a href="/hack/listjobs/${profileId}" >see more...</a></font></i></tr>
 					<c:forEach var="job" items="${jobs}">
 						<tr>
-							<td style="padding:5px;background-color:white"><img src="${job.companyLogo}" width="50px"
-									height="50px" /></td>
-							<td style="padding:5px;background-color:white">${job.jobTitle}<br>${job.location}</td>
+							<td style="padding:5px;background-color:white"><img src="${job.companyLogo}" width="45px"
+									height="45px" /></td>
+							<td style="padding:5px;background-color:white"><font color="blue" style="background-color:white">${job.jobTitle}</font>
+							<br>${job.location}</td>
 								<c:choose>
 									<c:when test="${job.rating < 40}">
 										<td style="padding:5px;color:red;font-weight:bold;background-color:white">${job.rating}%</td>

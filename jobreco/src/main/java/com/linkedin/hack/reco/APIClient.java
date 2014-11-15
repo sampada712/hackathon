@@ -8,6 +8,9 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 
+import com.linkedin.hack.reco.pojo.profile.Profile;
+import com.linkedin.hack.reco.pojo.search.SearchResults;
+
 public class APIClient {
 
 	private OAuthService getService() {
@@ -30,27 +33,27 @@ public class APIClient {
 		return response.getBody();
 	}
 
-	public String searchProfiles(String fname, String lname, String prevEmp,
-			String currentEmp) {
+	public SearchResults getProfiles(String fname, String lname) {
 		String url = String
-				.format("https://api.linkedin.com/v1/people-search?first-name=%s&last-name=%s&company-name=%s&current-company=%s&sort=connections",
-						fname, lname, prevEmp, currentEmp);
+				.format("https://api.linkedin.com/v1/people-search?first-name=%s&last-name=%s&sort=connections&format=json",
+						fname, lname);
 
 		OAuthRequest request = new OAuthRequest(Verb.GET, url);
 		getService().signRequest(getToken(), request);
 		Response response = request.send();
-		return response.getBody();
+		SearchResults searchResults = JSONParser.getSearchResults(response.getBody());
+		return searchResults;
 	}
 
-	public String getProfileData(String id) {
+	public Profile getProfileData(String profileId) {
 		OAuthRequest request = new OAuthRequest(
 				Verb.GET,
 				"http://api.linkedin.com/v1/people/id="
-						+ id
+						+ profileId
 						+ ":(id,first-name,last-name,industry,positions,site-standard-profile-request,skills,educations)?format=json");
 		getService().signRequest(getToken(), request);
 		Response response = request.send();
-		return response.getBody();
+		return JSONParser.getProfile(response.getBody());
 	}
 	
 	public String getCompaniesFollowed(String id) {
@@ -76,12 +79,12 @@ public class APIClient {
 		 System.out.println(search);
 		 */
 		
-/*		 String memberDetails = lc.getProfileData("LVoFYo5QHJ");
-		 System.out.println(memberDetails);*/
-		
+		 Profile profile = lc.getProfileData("LVoFYo5QHJ");
+		 System.out.println(profile.getFirstName());
+		/*
 		 String memberDetails = lc.getCompaniesFollowed("LVoFYo5QHJ");
 		 System.out.println(memberDetails);
-		 
+		*/ 
 		 
 		 
 

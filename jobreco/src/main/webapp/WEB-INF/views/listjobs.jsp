@@ -23,7 +23,7 @@
 }
 
 div#main-content {
-	padding-top: 30px;
+	padding-top: 10px;
 }
 
 div.profile {
@@ -59,19 +59,27 @@ th {
 			<image src="/hack/resources/images/linkedinBanner2.png"
 				style="width:100%">
 		</div>
-		<div id="search">
+		<!-- 		<div id="search">
 			<image src="/hack/resources/images/jobSearch.png" style="width:100%">
-		</div>
+		</div> -->
 		<div id="main-content">
 			<div class="results">
 				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th colspan="2"><image
+									src="/hack/resources/images/logo2.png" height="50px" /><span
+								style="font-family: arial; font-size: 18px; vertical-align: bottom; padding-left: 5px;">Putting
+									you in a position to succeed.</span></th>
+						</tr>
+					</thead>
 
 					<tbody>
 						<c:forEach var="job" items="${jobs}">
 							<tr>
 								<td width="70%"><div>
 										<div style="float: left">
-											<image src="${job.companyLogo}" />
+											<image height="50px" width="50px" src="${job.companyLogo}" />
 										</div>
 										<div style="float: left">
 											<span
@@ -96,7 +104,9 @@ th {
 													) 
 												</c:when>
 												<c:when test="${criteria.key eq 'Connections'}">
-													Connections: <a href="/">${criteria.value[0]} people </a>
+													Connections: <a
+														style="font-family: arial; font-size: 12px;" href="/">${criteria.value[0]}
+														people </a>
 												</c:when>
 												<c:otherwise>
 													${criteria.key}, 

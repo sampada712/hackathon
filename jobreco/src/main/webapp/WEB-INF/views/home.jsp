@@ -15,7 +15,8 @@
 	rel='stylesheet' type='text/css'>
 <style type="text/css">
 * {
-	font-family: 'Dosis', sans-serif;
+	font-family: "Times New Roman", Georgia, Serif;
+	font-size: 15px;
 	background-color: #D3D3D3;
 }
 
@@ -54,73 +55,80 @@ th {
 	font-size: large;
 	text-align: center;
 }
+
+th{
+padding : 10px;
+}
 </style>
 </head>
 <body>
    <div style="width:1000px; margin:0 auto;">
         
 	<div id="banner">
-		<image src="/hack/resources/images/linkedinBanner2.png"
+		<img src="/hack/resources/images/linkedinBanner2.png"
 			style="width:100%">
 	</div>
 	<div id="main-content" class="container-fluid">
 		<div class="profile col-xs-8">
-			
+
 			<div class="row">
-				<image src="/hack/resources/images/profile1.png"
+				<img src="/hack/resources/images/profile1.png" style="width:100%">
+			</div>
+			<div class="row">
+				<img src="/hack/resources/images/background1.png"
 					style="width:100%">
 			</div>
 			<div class="row">
-				<image src="/hack/resources/images/background1.png"
-					style="width:100%">
+				<img src="/hack/resources/images/skills1.png" style="width:100%">
 			</div>
 			<div class="row">
-				<image src="/hack/resources/images/skills1.png"
+				<img src="/hack/resources/images/education1.png"
 					style="width:100%">
 			</div>
-			<div class="row">
-				<image src="/hack/resources/images/education1.png"
-					style="width:100%">
-			</div>		
 		</div>
 		<div class="results col-xs-4">
 			<div class="row">
-				<image src="/hack/resources/images/people1.png"
-					style="width:95%">
-			</div>		
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Job Information</th>
-						<th>Rating</th>
-					</tr>
-				</thead>
-				<tbody>
-
+				<img src="/hack/resources/images/people1.png">
+			</div>
+			<br>
+			<div class="row" style="background-color:white;border:3px solid blue;" width="280px">
+				<table >
+					<tr><b><span style="font-size:125%">Check out these jobs</span></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><font style="background-color:white;color:blue">
+					<a href="/hack/listjobs/${profileId}" >see more...</a></font></i></tr>
 					<c:forEach var="job" items="${jobs}">
 						<tr>
-							<td rowspan="2">1</td>
-							<td class="job-title">${job.jobTitle}</td>
-							<td class="rating">5.0 Match!</td>
-						</tr>
-						<tr>
-							<td class="description">a job description blah blah blah</td>
-							<td class="keywords pull-right"><span
-								class="label label-primary">Javascript</span> <span
-								class="label label-primary">PHP</span> <span
-								class="label label-primary">Java</span> <span
-								class="label label-primary">HTML</span> <span
-								class="label label-primary">Ruby on Rails</span> <span
-								class="label label-primary">Python</span></td>
+							<td style="padding:5px;background-color:white"><img src="${job.companyLogo}" width="50px"
+									height="50px" /></td>
+							<td style="padding:5px;background-color:white">${job.jobTitle}<br>${job.location}</td>
+								<c:choose>
+									<c:when test="${job.rating < 40}">
+										<td style="padding:5px;color:red;font-weight:bold;background-color:white">${job.rating}%</td>
+    								</c:when>
+									<c:when test="${job.rating < 70 && job.rating >= 40}">
+										<td style="padding:5px;color:blue;font-weight:bold;background-color:white">${job.rating}%</td>
+    								</c:when>
+									<c:when test="${job.rating < 100 && job.rating >= 70}">
+										<td style="padding:5px;color:green;font-weight:bold;background-color:white">${job.rating}%</td>
+    								</c:when>
+    								<c:otherwise>
+        								<td style="padding:5px;color:yellow;font-weight:bold;background-color:white">${job.rating}%</td>
+									</c:otherwise>
+								</c:choose>
 						</tr>
 					</c:forEach>
-				</tbody>
-			</table>
+				</table>
+			</div>
+			<br>
+			<div class="row">
+				<img src="/hack/resources/images/others1.png">
+			</div>
+			<br>
+			<div class="row">
+				<img src="/hack/resources/images/who1.png">
+			</div>
 		</div>
 	</div>
-
-    </div>
+	</div>
 	<script type="text/javascript"></script>
 </body>
 

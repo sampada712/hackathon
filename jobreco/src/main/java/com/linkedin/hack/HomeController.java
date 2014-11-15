@@ -45,6 +45,7 @@ public class HomeController {
 				.getRecommendedJobsForProfile(profileId);
 		
 		model.addAttribute("jobs", jobs);
+		model.addAttribute("profileId", profileId);
 
 
 		return "home";

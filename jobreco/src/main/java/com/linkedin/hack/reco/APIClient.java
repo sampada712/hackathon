@@ -30,11 +30,10 @@ public class APIClient {
 		return response.getBody();
 	}
 
-	public String searchProfiles(String fname, String lname, String prevEmp,
-			String currentEmp) {
+	public String searchProfiles(String fname, String lname) {
 		String url = String
-				.format("https://api.linkedin.com/v1/people-search?first-name=%s&last-name=%s&company-name=%s&current-company=%s&sort=connections",
-						fname, lname, prevEmp, currentEmp);
+				.format("https://api.linkedin.com/v1/people-search?first-name=%s&last-name=%s&sort=connections",
+						fname, lname);
 
 		OAuthRequest request = new OAuthRequest(Verb.GET, url);
 		getService().signRequest(getToken(), request);
@@ -42,7 +41,16 @@ public class APIClient {
 		return response.getBody();
 	}
 
-	public String getProfileData(String id) {
+	public String getProfileData(String fname, String lname) {
+		String url = String
+				.format("https://api.linkedin.com/v1/people-search?first-name=%s&last-name=%s&sort=connections",
+						fname, lname);
+
+		OAuthRequest request = new OAuthRequest(Verb.GET, url);
+		getService().signRequest(getToken(), request);
+		Response response = request.send();
+		Profile profile = ProfileParser.getProfileDetails(response.getBody());
+		
 		OAuthRequest request = new OAuthRequest(
 				Verb.GET,
 				"http://api.linkedin.com/v1/people/id="
@@ -56,13 +64,14 @@ public class APIClient {
 	public static void main(String[] args) {
 		APIClient lc = new APIClient();
 
-		String jobs = lc.getJobs("us");
-		System.out.println(jobs);
+		/*
+		 * String jobs = lc.getJobs("us"); System.out.println(jobs);
+		 */
+
+		String search = lc.searchProfiles("anu", "vemuri", "", "");
+		System.out.println(search);
 
 		/*
-		 * String search = lc.search("anu", "vemuri", "", "");
-		 * System.out.println(search);
-		 * 
 		 * String memberDetails = lc.getMemberDetails("LVoFYo5QHJ");
 		 * System.out.println(memberDetails);
 		 */

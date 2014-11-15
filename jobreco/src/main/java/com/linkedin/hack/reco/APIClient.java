@@ -13,6 +13,19 @@ import com.linkedin.hack.reco.pojo.search.SearchResults;
 
 public class APIClient {
 
+	private APIClient() {
+
+	}
+
+	private static APIClient instance;
+
+	public static APIClient getInstance() {
+		if (instance == null) {
+			instance = new APIClient();
+		}
+		return instance;
+	}
+
 	private OAuthService getService() {
 		return new ServiceBuilder().provider(LinkedInApi.class)
 				.apiKey("igfxoojhisoy").apiSecret("Vc9OURhfaNdMFWLi").build();
@@ -41,7 +54,8 @@ public class APIClient {
 		OAuthRequest request = new OAuthRequest(Verb.GET, url);
 		getService().signRequest(getToken(), request);
 		Response response = request.send();
-		SearchResults searchResults = JSONParser.getSearchResults(response.getBody());
+		SearchResults searchResults = JSONParser.getSearchResults(response
+				.getBody());
 		return searchResults;
 	}
 
@@ -55,38 +69,34 @@ public class APIClient {
 		Response response = request.send();
 		return JSONParser.getProfile(response.getBody());
 	}
-	
+
 	public String getCompaniesFollowed(String id) {
-		OAuthRequest request = new OAuthRequest(
-				Verb.GET,
-				"http://api.linkedin.com/v1/people/id="
-						+ id
+		OAuthRequest request = new OAuthRequest(Verb.GET,
+				"http://api.linkedin.com/v1/people/id=" + id
 						+ "/following/companies");
 		getService().signRequest(getToken(), request);
 		Response response = request.send();
 		return response.getBody();
 	}
-	
 
 	public static void main(String[] args) {
 		APIClient lc = new APIClient();
 
-	/*	String jobs = lc.getJobs("us");
-		System.out.println(jobs);*/
-
-		
-		 /*String search = lc.search("anu", "vemuri", "", "");
-		 System.out.println(search);
-		 */
-		
-		 Profile profile = lc.getProfileData("LVoFYo5QHJ");
-		 System.out.println(profile.getFirstName());
 		/*
-		 String memberDetails = lc.getCompaniesFollowed("LVoFYo5QHJ");
-		 System.out.println(memberDetails);
-		*/ 
-		 
-		 
+		 * String jobs = lc.getJobs("us"); System.out.println(jobs);
+		 */
+
+		/*
+		 * String search = lc.search("anu", "vemuri", "", "");
+		 * System.out.println(search);
+		 */
+
+		Profile profile = lc.getProfileData("LVoFYo5QHJ");
+		System.out.println(profile.getFirstName());
+		/*
+		 * String memberDetails = lc.getCompaniesFollowed("LVoFYo5QHJ");
+		 * System.out.println(memberDetails);
+		 */
 
 	}
 }

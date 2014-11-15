@@ -3,11 +3,14 @@ package com.linkedin.hack.job;
 public class Job {
 
 	public Job(String companyName, String location, String jobTitle,
-			long JobId) {
+			String companyLogo, String jobDesc, int rating, long JobId) {
 		this.companyName = companyName;
 		this.jobTitle = jobTitle;
 		this.location = location;
 		this.JobId = JobId;
+		this.companyLogo = companyLogo;
+		this.jobDesc = jobDesc;
+		this.rating = rating;
 	}
 
 	String companyName;
@@ -47,4 +50,32 @@ public class Job {
 	String jobTitle;
 	String location;
 	long JobId;
+
+	public String getCompanyLogo() {
+		return companyLogo;
+	}
+
+	public void setCompanyLogo(String companyLogo) {
+		this.companyLogo = companyLogo;
+	}
+
+	public String getJobDesc() {
+		return jobDesc;
+	}
+
+	public void setJobDesc(String jobDesc) {
+		this.jobDesc = jobDesc;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	String companyLogo;
+	String jobDesc;
+	int rating;
 }

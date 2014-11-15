@@ -93,7 +93,7 @@ padding : 10px;
 			<br>
 			<div class="row" style="background-color:white;" width="250px">
 				<table >
-					<tr><b><span style="font-size:125%">Check out these jobs</span></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><font style="background-color:white;color:blue">
+					<tr><img src="/hack/resources/images/logo2.png" width="30%" height="10%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><font style="background-color:white;color:blue">
 					<a href="/hack/listjobs/${profileId}" >see more...</a></font></i></tr>
 					<c:forEach var="job" items="${jobs}">
 						<tr>

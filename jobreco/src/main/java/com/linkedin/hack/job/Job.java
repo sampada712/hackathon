@@ -1,9 +1,12 @@
 package com.linkedin.hack.job;
 
+import java.util.Map;
+
 public class Job {
 
 	public Job(String companyName, String location, String jobTitle,
-			String companyLogo, String jobDesc, int rating, long JobId) {
+			String companyLogo, String jobDesc, int rating, long JobId,
+			Map<String, String[]> matchedCriteria) {
 		this.companyName = companyName;
 		this.jobTitle = jobTitle;
 		this.location = location;
@@ -11,6 +14,7 @@ public class Job {
 		this.companyLogo = companyLogo;
 		this.jobDesc = jobDesc;
 		this.rating = rating;
+		this.matchedCriteria = matchedCriteria;
 	}
 
 	String companyName;
@@ -78,4 +82,5 @@ public class Job {
 	String companyLogo;
 	String jobDesc;
 	int rating;
+	Map<String, String[]> matchedCriteria;
 }

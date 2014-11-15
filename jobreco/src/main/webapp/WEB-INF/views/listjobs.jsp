@@ -16,7 +16,6 @@
 <style type="text/css">
 * {
 	font-family: 'Dosis', sans-serif;
-	background-color: #D3D3D3;
 }
 
 .picture {
@@ -33,8 +32,6 @@ div.profile {
 
 div.results {
 	text-align: center;
-	padding-right: 30px;
-	padding-left: 30px;
 }
 
 .company {
@@ -54,49 +51,86 @@ th {
 	font-size: large;
 	text-align: center;
 }
-
 </style>
 </head>
 <body>
+	<div style="width: 1000px; margin: 0 auto;">
+		<div id="banner">
+			<image src="/hack/resources/images/linkedinBanner2.png"
+				style="width:100%">
+		</div>
+		<div id="search">
+			<image src="/hack/resources/images/jobSearch.png" style="width:100%">
+		</div>
+		<div id="main-content">
+			<div class="results">
+				<table class="table table-striped">
 
-	<div id="banner">
-		<image src="/hack/resources/images/linkedinBanner2.png"
-			style="width:100%">
-	</div>
-	<div id="search">
-		<image src="/hack/resources/images/jobSearch.png"
-			style="width:100%">
-	</div>
-	<div id="main-content" class="container-fluid">
-		<div class="results col-xs-10">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Job Information</th>
-						<th>Rating</th>
-					</tr>
-				</thead>
-				<tbody>
+					<tbody>
+						<c:forEach var="job" items="${jobs}">
+							<tr>
+								<td width="70%"><div>
+										<div style="float: left">
+											<image src="${job.companyLogo}" />
+										</div>
+										<div style="float: left">
+											<span
+												style="padding-left: 15px; padding-top: 5px; font-weight: bold; font-family: arial; font-size: 18px; vertical-align: text-top"><a
+												href="">${job.jobTitle}</a></span></br> <span
+												style="font-family: arial; font-size: 14px; padding-left: 15px; padding-top: 5px;">${job.companyName}
+												- ${job.location}</span><br /> <span
+												style="padding-left: 15px; vertical-align: text-top; font-family: arial; font-size: 12px">${job.jobDesc}.....</span>
+										</div>
+									</div></td>
+								<td width="30%"><span
+									style="vertical-align: text-top; font-family: arial; font-weight: bold; font-size: 14px">Matched
+										Criteria: </span><span style="font-family: arial; font-size: 12px;">Location,
+										Experience, Skills(Java, Oracle), Connections: <a
+										href="https://www.linkedin.com/profile/view?id=117013219&amp;trk=nav_responsive_tab_profile_pic"
+										class="account-toggle"> <img
+											src="https://media.licdn.com/mpr/mpr/shrink_20_20/p/2/000/1e8/10c/2a51a4a.jpg"
+											data-li-src="https://media.licdn.com/mpr/mpr/shrink_20_20/p/2/000/1e8/10c/2a51a4a.jpg"
+											id="img-defer-id-1-40363" class="img-defer nav-profile-photo"
+											alt="sampada patil" height="20" width="20">
+									</a> &nbsp;&nbsp;<a
+										href="https://www.linkedin.com/profile/view?id=18567515&amp;trk=nav_responsive_tab_profile_pic"
+										class="account-toggle"> <img
+											src="https://media.licdn.com/mpr/mpr/shrink_20_20/p/4/000/149/33e/2e7c8f5.jpg"
+											data-li-src="https://media.licdn.com/mpr/mpr/shrink_20_20/p/4/000/149/33e/2e7c8f5.jpg"
+											id="img-defer-id-1-40363" class="img-defer nav-profile-photo"
+											alt="Lata Chari" height="20" width="20">
+									</a>
+								</span><br /> <span
+									style="vertical-align: text-top; font-family: arial; font-weight: bold; font-size: 14px; padding-bottom: 3px">Score: </span> <c:choose>
+										<c:when test="${job.rating < 40}">
+											<span style="color: red; font-weight: bold;">${job.rating}%
+											</span>
 
-					<tr>
-						<td rowspan="2">1</td>
-						<td class="job-title">${job.jobTitle}</td>
-						<td class="rating">5.0 Match!</td>
-					</tr>
-					<tr>
-						<td class="description">a job description blah blah blah</td>
-						<td class="keywords pull-right"><span
-							class="label label-primary">Javascript</span> <span
-							class="label label-primary">PHP</span> <span
-							class="label label-primary">Java</span> <span
-							class="label label-primary">HTML</span> <span
-							class="label label-primary">Ruby on Rails</span> <span
-							class="label label-primary">Python</span></td>
-					</tr>
+										</c:when>
+										<c:when test="${job.rating < 70 && job.rating >= 40}">
+											<span style="color: blue; font-weight: bold;">${job.rating}%
+											</span>
 
-				</tbody>
-			</table>
+										</c:when>
+										<c:when test="${job.rating < 100 && job.rating >= 70}">
+											<span style="color: green; font-weight: bold;">${job.rating}%</span>
+
+										</c:when>
+										<c:otherwise>
+											<span style="color: yellow; font-weight: bold;">${job.rating}%</span>
+
+										</c:otherwise>
+									</c:choose> <br /> <span
+									style="vertical-align: text-top; font-weight: bold;"><a
+										href=""><span class="label label-primary">Apply</span></a></span></td>
+							</tr>
+
+
+						</c:forEach>
+
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 

@@ -24,7 +24,7 @@
 }
 
 div#main-content {
-	padding-top: 30px;
+	padding-top: 1px;
 }
 
 div.profile {
@@ -33,8 +33,8 @@ div.profile {
 
 div.results {
 	text-align: center;
-	padding-right: 30px;
-	padding-left: 30px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
 .company {
@@ -57,19 +57,37 @@ th {
 </style>
 </head>
 <body>
-
+   <div style="width:1000px; margin:0 auto;">
+        
 	<div id="banner">
 		<image src="/hack/resources/images/linkedinBanner2.png"
 			style="width:100%">
 	</div>
 	<div id="main-content" class="container-fluid">
-		<div class="profile col-xs-4">
+		<div class="profile col-xs-8">
+			
 			<div class="row">
-				<image src="/hack/resources/images/contactCard.png"
+				<image src="/hack/resources/images/profile1.png"
 					style="width:100%">
 			</div>
+			<div class="row">
+				<image src="/hack/resources/images/background1.png"
+					style="width:100%">
+			</div>
+			<div class="row">
+				<image src="/hack/resources/images/skills1.png"
+					style="width:100%">
+			</div>
+			<div class="row">
+				<image src="/hack/resources/images/education1.png"
+					style="width:100%">
+			</div>		
 		</div>
-		<div class="results col-xs-8">
+		<div class="results col-xs-4">
+			<div class="row">
+				<image src="/hack/resources/images/people1.png"
+					style="width:95%">
+			</div>		
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -102,6 +120,7 @@ th {
 		</div>
 	</div>
 
+    </div>
 	<script type="text/javascript"></script>
 </body>
 

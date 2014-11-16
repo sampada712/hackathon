@@ -28,12 +28,12 @@ public class APIClient {
 
 	private OAuthService getService() {
 		return new ServiceBuilder().provider(LinkedInApi.class)
-				.apiKey("igfxoojhisoy").apiSecret("Vc9OURhfaNdMFWLi").build();
+				.apiKey("").apiSecret("").build();
 	}
 
 	private Token getToken() {
-		return new Token("733bb4ed-c932-48ed-9564-8edb0e54b2f4",
-				"8b5aa80f-d922-43b6-9006-a82fb0c147da");
+		return new Token("",
+				"");
 	}
 
 	public String getJobs(String country) {
@@ -91,7 +91,7 @@ public class APIClient {
 		 * System.out.println(search);
 		 */
 
-		Profile profile = lc.getProfileData("LVoFYo5QHJ");
+		Profile profile = lc.getProfileData("");
 		System.out.println(profile.getFirstName());
 		/*
 		 * String memberDetails = lc.getCompaniesFollowed("LVoFYo5QHJ");
